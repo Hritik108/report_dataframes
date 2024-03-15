@@ -412,12 +412,6 @@ def fetch_pos_data():
             for col in range(temp.shape[1]):
                 worksheet.set_column(col, col, uniform_width)
 
-        excel_filename = "trans_pos_report.xlsx"
-        with open(excel_filename, 'wb') as file:
-            file.write(excel_buffer.getvalue())
-
-        breakpoint()
-
         local_file_path = "trans_pos_report.xlsx"
         bucket_name = "email-cron"
         s3_file_key = f"pos_report/{brand}_{one_month_ago_formatted}_to_{today_formatted}.xlsx"
@@ -439,8 +433,6 @@ def fetch_pos_data():
         draft = f"Monthly Pos Report from {today_formatted} to {one_month_ago_formatted} of {brand}"
         print(s3_url)
         file_name =f"{brand}_{one_month_ago_formatted}_to_{today_formatted}.xlsx"
-
-        breakpoint()
 
         # payload = {
         #         'pdf_s3_url' : s3_url,
